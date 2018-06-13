@@ -1,15 +1,4 @@
-#map {
-	width:800px;
-	height:800px;
-    display: none;
-}
-
-.map_tile_sea {
-    float:left;
-    width:8px;
-    height:8px;
-}
-
-#loading {
-    display: block;
+body {
+    margin: 0;
+    padding: 0;
 }

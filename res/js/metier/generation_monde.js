@@ -1,3 +1,15 @@
+function init() {
+	seed = Math.random(0.2,0.6).toFixed(2);
+	for (var y = 0; y < columns; y++) {
+			for (var x = 0; x < rows; x++) {
+					var height = PerlinNoise.noise(x/25, y/25, seed);
+                    board[y][x] = 1 - height;
+                    console.log(height)
+			}
+	}
+}
+
+
 // This is a port of Ken Perlin's Java code. The
 // original Java code is at http://cs.nyu.edu/%7Eperlin/noise/.
 // Note that in this version, a number from 0 to 1 is returned.
