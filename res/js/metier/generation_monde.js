@@ -3,8 +3,7 @@ function init() {
 	for (var y = 0; y < columns; y++) {
 			for (var x = 0; x < rows; x++) {
 					var height = PerlinNoise.noise(x/25, y/25, seed);
-                    board[y][x] = 1 - height;
-                    console.log(height)
+                    board[y][x] = new Cellule(1 - height);
 			}
 	}
 }

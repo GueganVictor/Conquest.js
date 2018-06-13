@@ -25,7 +25,7 @@ function draw() {
 	noStroke();
 	for ( var i = 0; i < columns;i++) {
 		for ( var j = 0; j < rows;j++) {
-		cell = board[i][j];
+		cell = board[i][j].valeur;
 		if (cell <= 1) {
 			if (cell > 0.50) {
 				coul = cell-0.05;
@@ -52,12 +52,12 @@ function draw() {
 function mousePressed() {
 	x = Math.floor(mouseX/w);
 	y = Math.floor(mouseY/w);
-	cell = board[x][y];
+	cell = board[x][y].valeur;
 	console.log(cell);
 	if (cell > 0.5 && cell < 2 && nbColons > 0) {
 		console.log("Civilisation ajoutée");
 		cell = 2;
 		nbColons--;
 	}
-	board[x][y] = cell;
+	board[x][y].valeur = cell;
 }

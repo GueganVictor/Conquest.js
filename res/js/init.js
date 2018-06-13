@@ -11,6 +11,14 @@ var villageBot = 2;
 
 // Fill board randomly
 
+class Cellule {
 
+    constructor(valeur) {
+      this.valeur = valeur;
+      if (valeur > 0.5)
+        this.nbPropagations = 1;
+    }
+
+  }
 
 // The process of creating the new generation
