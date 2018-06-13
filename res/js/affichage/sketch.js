@@ -1,11 +1,8 @@
 function setup() {
 	frameRate(5)
-	createCanvas(window.innerWidth, window.innerHeight);
+	canv = createCanvas(w*columns, w*rows);
+	canv.mousePressed(cliqueCase);
 	noStroke();
-	w = 12;
-	// Calculate columns and rows
-	columns = 100;
-	rows = 50;
 	// Wacky way to make a 2D array is JS
 	board = new Array(columns);
 	for (var i = 0; i < columns; i++) {
@@ -49,7 +46,7 @@ function draw() {
 	generate();
 }
 
-function mousePressed() {
+function cliqueCase() {
 	x = Math.floor(mouseX/w);
 	y = Math.floor(mouseY/w);
 	cell = board[x][y].valeur;

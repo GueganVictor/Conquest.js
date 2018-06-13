@@ -1,13 +1,14 @@
-var w;
-var columns;
-var rows;
+var w = 12;
+var columns = 50;
+var rows = 50;
 var board;
 var next;
 var seed;
 
 var nbColons = 2;
 var villageBot = 2;
-// lancement
+
+
 
 // Fill board randomly
 
@@ -15,8 +16,7 @@ class Cellule {
 
     constructor(valeur) {
       this.valeur = valeur;
-      if (valeur > 0.5)
-        this.nbPropagations = 1;
+      this.nbPropagations = 1;
     }
 
   }
