@@ -1,30 +1,44 @@
-function generate() {
-
-	// Loop through every spot in our 2D array and check spots neighbors
+function updateTab() {
+	temp = board;
 	for (var x = 0; x < columns ; x++) {
 		for (var y = 0; y < rows; y++) {
-			cell = board[x][y];
-			if (cell.valeur > 1 && cell.nbPropagtions != 0) {
-				cell.nbPropagtions--;
-				propager(x,y);
+			if (Math.round(random(0,1000000)) == 5) {
+				board[x][y].valeur = 3;
+			}
+			cell = temp[x][y];
+			if (cell.valeur == 3) {
+				if (document.getElementById("pause").checked == false) {
+					if (random(0,8) < 6) {
+						propager(x,y);
+					}
+					if (cell.tour >= cell.resistance) {
+						cell.tour == 0;
+						board[x][y] = cell;
+						board[x][y].valeur = 0;
+					}
+					cell.tour++;
+				}
+			}
+			if (cell.valeur == 0) {
+				cell.tour++;
+				if (cell.tour >= cell.fertilite) {
+					cell.tour == 0;
+					board[x][y] = cell;
+					board[x][y].valeur = board[x][y].origin;
+				}
+			}
+			if (cell.valeur == 1 || cell.valeur == 2) {
+				board[x][y].tour = 0;
 			}
 		}
 	}
+
 }
 
 function lancer() {
-	while (villageBot > 0) {
-		x = Math.round(random(1, columns));
-		y = Math.round(random(1, rows));
-		cell = board[x][y];
-		if (cell.valeur > 0.5 && cell.valeur != 2) {
-			console.log("Bot ajouté");
-			cell.valeur = 3;
-			villageBot--;
-			board[x][y].valeur = cell.valeur;
-		}
-	}
-	villageBot = 2;
+	x = Math.round(random(1, columns));
+	y = Math.round(random(1, rows));
+	board[x][y].valeur = 3;
 }
 
 function propager (i, j) {
@@ -48,18 +62,16 @@ function propager (i, j) {
 			nbVoisin++;
 		}
 	}
-	valeur = board[i][j].valeur;
-	rand = neighbors[Math.round(random(0,nbVoisin))];
-	if (rand != null) {
-		voisin = rand.split(",");
+
+
+	voisin = neighbors[Math.round(random(0,nbVoisin))];
+	if (voisin != null) {
+		voisin = voisin.split(",");
 		nouvelleCellule = board[voisin[0]][voisin[1]];
-		if (nouvelleCellule.valeur > 0.5 && nouvelleCellule.nbPropagations > 0) {
-			board[voisin[0]][voisin[1]].valeur = valeur;
-			nouvelleCellule.nbPropagations--;
+		if (nouvelleCellule.valeur == 1 || nouvelleCellule.valeur == 2 ) {
+			board[voisin[0]][voisin[1]].valeur = 3;
 		}
-
 	}
-
 }
 
 function estVoisin(i, j) {

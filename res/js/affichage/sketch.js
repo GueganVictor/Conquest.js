@@ -1,49 +1,56 @@
 function setup() {
-	frameRate(5)
+	frameRate(tick);
 	canv = createCanvas(w*columns, w*rows);
 	canv.mousePressed(cliqueCase);
 	noStroke();
-	// Wacky way to make a 2D array is JS
+
+
 	board = new Array(columns);
 	for (var i = 0; i < columns; i++) {
 		board[i] = new Array(rows);
 	}
 
-	// Going to use multiple 2D arrays and swap them
-	next = new Array(columns);
+	temp = new Array(columns);
 	for (i = 0; i < columns; i++) {
-		next[i] = new Array(rows);
+		temp[i] = new Array(rows);
 	}
+
+
 	init();
+
+	slider = createSlider(1, 100, 10);
+	console.log("r "+board[25][25].resistance);
+	console.log("f "+board[25][25].fertilite);
 }
 
 function draw() {
+	console.log(board[25][25].tour);
+	tick = slider.value();
+	frameRate(tick);
 	background(255);
 	noStroke();
+	afficher();
+	updateTab();
+}
+
+function afficher() {
 	for ( var i = 0; i < columns;i++) {
 		for ( var j = 0; j < rows;j++) {
-		cell = board[i][j].valeur;
-		if (cell <= 1) {
-			if (cell > 0.50) {
-				coul = cell-0.05;
-				if (coul > 0.62) coul = 0.62;
-				fill(50, (1 - coul) * 255, 10);
-
+			cell = board[i][j];
+			fill(34,139,34);
+			if (cell.valeur == 1) {
+				fill(0,100,0);
+			} else if (cell.valeur == 3) {
+				fill(190,0,0);
+			} else if (cell.valeur == 0) {
+				fill(255*cell.tour/10,255*cell.tour/80,255*cell.tour/80);
+				if (cell.tour > cell.fertilite/2) {
+					fill(255*cell.tour/250,255*cell.tour/45,255*cell.tour/250);
+				}
 			}
-			else {
-				coul = cell;
-				if (coul < 0.40) coul = 0.40;
-				fill(0, 80, coul * 255);
-			}
-		} else if (cell == 3) {
-			fill(255,0,0);
-		} else if (cell == 2) {
-			fill(0,0,255);
-		}
-		rect(i*w, j*w, w, w);
+			rect(i*w, j*w, w, w);
 		}
 	}
-	generate();
 }
 
 function cliqueCase() {

@@ -2,8 +2,8 @@ function init() {
 	seed = Math.random(0.2,0.6).toFixed(2);
 	for (var y = 0; y < columns; y++) {
 			for (var x = 0; x < rows; x++) {
-					var height = PerlinNoise.noise(x/25, y/25, seed);
-                    board[y][x] = new Cellule(1 - height);
+					var height = PerlinNoise.noise(x/5, y/5, seed);
+                    board[y][x] = new Cellule( (Math.round(height)+1) );
 			}
 	}
 }

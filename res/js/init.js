@@ -5,6 +5,7 @@ var board;
 var next;
 var seed;
 
+var tick = 5;
 var nbColons = 2;
 var villageBot = 2;
 
@@ -16,9 +17,13 @@ class Cellule {
 
     constructor(valeur) {
       this.valeur = valeur;
-      this.nbPropagations = 1;
+      this.fertilite = Math.round(random(20, 50));
+      this.resistance = Math.round(random(2, 5));
+      this.origin = valeur;
+      this.tour = 0;
     }
 
   }
 
 // The process of creating the new generation
+
