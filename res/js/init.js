@@ -17,8 +17,8 @@ class Cellule {
 
     constructor(valeur) {
       this.valeur = valeur;
-      this.fertilite = Math.round(random(20, 50));
-      this.resistance = Math.round(random(2, 5));
+      this.fertilite = 100;
+      this.resistance = Math.round(random(2, 10));
       this.origin = valeur;
       this.tour = 0;
     }

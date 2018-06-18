@@ -27,10 +27,12 @@ function draw() {
 	console.log(board[25][25].tour);
 	tick = slider.value();
 	frameRate(tick);
-	background(255);
+	background(127);
 	noStroke();
 	afficher();
-	updateTab();
+	if (document.getElementById("pause").checked == false) {
+		updateTab();
+	}
 }
 
 function afficher() {
@@ -38,15 +40,21 @@ function afficher() {
 		for ( var j = 0; j < rows;j++) {
 			cell = board[i][j];
 			fill(34,139,34);
-			if (cell.valeur == 1) {
+			if (cell.valeur == 4) {
+				fill(0,0,255);
+			} else if (cell.valeur == 1) {
 				fill(0,100,0);
 			} else if (cell.valeur == 3) {
-				fill(190,0,0);
+				fill(255,0,0);
 			} else if (cell.valeur == 0) {
-				fill(255*cell.tour/10,255*cell.tour/80,255*cell.tour/80);
-				if (cell.tour > cell.fertilite/2) {
-					fill(255*cell.tour/250,255*cell.tour/45,255*cell.tour/250);
+				fill(139,69,19);
+				if (cell.tour < 2) {
+					fill(180);
 				}
+				if (cell.tour < 10) {
+					fill(255,69,0);
+				}
+
 			}
 			rect(i*w, j*w, w, w);
 		}

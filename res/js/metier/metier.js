@@ -2,13 +2,12 @@ function updateTab() {
 	temp = board;
 	for (var x = 0; x < columns ; x++) {
 		for (var y = 0; y < rows; y++) {
-			if (Math.round(random(0,1000000)) == 5) {
+			if (Math.round(random(0,200000)) == 5) {
 				board[x][y].valeur = 3;
 			}
 			cell = temp[x][y];
 			if (cell.valeur == 3) {
-				if (document.getElementById("pause").checked == false) {
-					if (random(0,8) < 6) {
+					if (random(0,1) < 0.8) {
 						propager(x,y);
 					}
 					if (cell.tour >= cell.resistance) {
@@ -17,7 +16,6 @@ function updateTab() {
 						board[x][y].valeur = 0;
 					}
 					cell.tour++;
-				}
 			}
 			if (cell.valeur == 0) {
 				cell.tour++;

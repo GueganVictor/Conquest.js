@@ -1,9 +1,12 @@
 function init() {
-	seed = Math.random(0.2,0.6).toFixed(2);
+	seed = Math.random(0.1,0.9).toFixed(4);
 	for (var y = 0; y < columns; y++) {
 			for (var x = 0; x < rows; x++) {
-					var height = PerlinNoise.noise(x/5, y/5, seed);
+                    var height = PerlinNoise.noise(x/8, y/8, seed);
                     board[y][x] = new Cellule( (Math.round(height)+1) );
+                    if (height > 0.8 || height < 0.2) {
+                        board[y][x] = new Cellule(4);
+                    }
 			}
 	}
 }
